@@ -1,0 +1,68 @@
+{
+  "general": [
+    {
+      "username": "naina",
+      "content": "hello",
+      "timestamp": "00:06:39"
+    },
+    {
+      "username": "naina",
+      "content": "'",
+      "timestamp": "00:06:39"
+    },
+    {
+      "username": "tulsi ",
+      "content": "helo",
+      "timestamp": "00:13:31"
+    },
+    {
+      "username": "tulsi",
+      "content": "hii",
+      "timestamp": "00:15:26"
+    },
+    {
+      "username": "naina",
+      "content": "helo",
+      "timestamp": "00:15:30"
+    },
+    {
+      "username": "tulsi",
+      "content": "now working fine",
+      "timestamp": "00:15:39"
+    },
+    {
+      "username": "naina",
+      "content": "yes absolutly fine",
+      "timestamp": "00:15:51"
+    },
+    {
+      "username": "tulsi",
+      "content": "again welcome",
+      "timestamp": "00:22:39"
+    },
+    {
+      "username": "tulsi",
+      "content": "hey",
+      "timestamp": "00:22:48"
+    },
+    {
+      "username": "naina",
+      "content": "hey",
+      "timestamp": "00:25:18"
+    }
+  ],
+  "random": [],
+  "tech": [],
+  "gaming": [
+    {
+      "username": "tulsi",
+      "content": "ga,e",
+      "timestamp": "00:16:10"
+    },
+    {
+      "username": "naina",
+      "content": "game",
+      "timestamp": "00:16:15"
+    }
+  ]
+}

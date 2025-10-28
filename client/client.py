@@ -138,8 +138,19 @@ class ChatClient:
                 if not data:
                     break
                 
+                # Debug
+                if settings.DEBUG:
+                    try:
+                        peer = self.socket.getpeername()
+                    except:
+                        peer = None
+                    print(f"[DEBUG] Received raw data from {peer}: {data}")
+
                 message = json.loads(data)
-                
+
+                if settings.DEBUG:
+                    print(f"[DEBUG] Parsed message: {message}")
+
                 if self.message_callback:
                     self.message_callback(message)
                     

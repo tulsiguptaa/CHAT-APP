@@ -41,11 +41,26 @@ class ChatServer:
     
     def broadcast(self, message, room, sender_socket=None):
         """Send message to all clients in a room"""
-        for client_socket in self.rooms[room]:
+        recipients = list(self.rooms.get(room, []))
+        if settings.DEBUG:
+            try:
+                addr_list = []
+                for s in recipients:
+                    try:
+                        addr_list.append(s.getpeername())
+                    except:
+                        addr_list.append(('closed', None))
+                print(f"[DEBUG] Broadcasting to room='{room}' recipients={addr_list} sender={sender_socket.getpeername() if sender_socket else None} message={message}")
+            except Exception:
+                pass
+
+        for client_socket in recipients:
             if client_socket != sender_socket:
                 try:
                     client_socket.send(message.encode(settings.ENCODING))
-                except:
+                except Exception as e:
+                    if settings.DEBUG:
+                        print(f"[DEBUG] Failed to send to {client_socket}: {e}")
                     self.remove_client(client_socket)
     
     def remove_client(self, client_socket):

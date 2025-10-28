@@ -89,9 +89,14 @@ class ChatServer:
                     self.handle_large_message_end(client_socket)
                 
                 if msg_type == 'join':
-                    username = data['username']
-                    room = data['room']
-                    
+                    username = data.get('username', '')
+                    room = data.get('room', 'general')
+
+                    # Normalize username
+                    username = username.strip() if isinstance(username, str) else ''
+                    if not username:
+                        username = 'Anonymous'
+
                     self.clients[client_socket] = {'username': username, 'room': room}
                     self.rooms[room].append(client_socket)
                     

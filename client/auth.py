@@ -17,10 +17,26 @@ def save_users(users):
         json.dump(users, file, indent=4)
 
 # -------- Signup Logic -------- #
+def _normalize_username(username: str) -> str:
+    if username is None:
+        return ""
+    return username.strip()
+
+
 def signup(username, password):
+    """Create a new user. Returns True on success, False on failure.
+
+    Normalizes the username (strips whitespace) and enforces a minimal
+    password length.
+    """
+    username = _normalize_username(username)
+    if not username or not password or len(password) < 6:
+        return False
+
     users = load_users()
     if username in users:
         return False
+
     hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
     users[username] = hashed_password.decode('utf-8')  # Store as string
     save_users(users)
@@ -28,6 +44,7 @@ def signup(username, password):
 
 # -------- Login Logic -------- #
 def login(username, password):
+    username = _normalize_username(username)
     users = load_users()
     stored_password = users.get(username)
 
@@ -59,6 +76,7 @@ def open_auth_window(start_chat_callback):
         password = password_entry.get()
 
         if login(username, password):
+            username = _normalize_username(username)
             messagebox.showinfo("Login Successful", f"Welcome {username}!")
             window.destroy()
             start_chat_callback(username)  # Continue to chat window
@@ -72,7 +90,7 @@ def open_auth_window(start_chat_callback):
         if signup(username, password):
             messagebox.showinfo("Signup Successful", "You can now log in.")
         else:
-            messagebox.showerror("Signup Failed", "Username already exists.")
+            messagebox.showerror("Signup Failed", "Username already exists or invalid input (min password length 6).")
 
     # ===== Buttons ===== #
     tk.Button(window, text="Login", command=handle_login, font=("Arial", 12)).pack(pady=10)

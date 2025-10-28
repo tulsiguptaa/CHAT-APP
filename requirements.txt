@@ -1,7 +1,6 @@
 bcrypt==4.0.1
 Pillow==10.0.0
-tkinter
-socket
-threading
-json
-datetime 
+
+# Notes:
+# - tkinter, socket, threading, json, datetime are part of the Python standard library
+#   and should not be listed here. Install tkinter via your OS package manager if needed.

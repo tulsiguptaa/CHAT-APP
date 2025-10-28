@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.env
+venv/
+env/
+node_modules/
+.vscode/
+.idea/
+server/user_db.json
+server/chat_logs.json
+*.sqlite3
+.DS_Store
+/*.log
+annual-report-portal/node_modules/
+/.pytest_cache/
